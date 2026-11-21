@@ -1,0 +1,11 @@
+# Environnement Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# Base de données générée (reproductible via src/generate_data.py)
+data/*.db
+
+# macOS
+.DS_Store
