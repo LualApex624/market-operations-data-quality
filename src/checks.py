@@ -7,7 +7,8 @@ row_id, transaction_id, check_type, rule, description.
 import pandas as pd
 
 from src.config import (
-    ALLOWED_CURRENCIES, ALLOWED_STATUSES, COMPLETENESS, MANDATORY_FIELDS, VALIDITY,
+    ALLOWED_CURRENCIES, ALLOWED_STATUSES, COMPLETENESS, CONSISTENCY, MANDATORY_FIELDS,
+    UNIQUENESS, VALIDITY,
 )
 
 COLUMNS = ["row_id", "transaction_id", "check_type", "rule", "description"]
@@ -70,9 +71,50 @@ def check_validity(df, as_of):
     return pd.concat(results, ignore_index=True)
 
 
+# --- 3. Uniqueness ----------------------------------------------------------
+
+# Champs qui, ensemble, décrivent "la même opération" même si l'identifiant diffère
+BUSINESS_KEY = ["product", "trade_date", "amount", "currency", "counterparty"]
+
+
+def check_uniqueness(df, as_of=None):
+    """Une transaction ne doit pas être enregistrée plusieurs fois."""
+    # On garde la première occurrence et on signale les suivantes.
+    duplicate_id = ~_is_missing(df["transaction_id"]) & df.duplicated("transaction_id", keep="first")
+
+    # Même opération saisie sous un autre identifiant (doublon "potentiel" : à vérifier).
+    complete_key = ~df[BUSINESS_KEY].isna().any(axis=1)
+    potential = complete_key & df.duplicated(BUSINESS_KEY, keep="first") & ~duplicate_id
+
+    return pd.concat([
+        _flag(df, duplicate_id, UNIQUENESS, "DUPLICATE_ID", "Identifiant de transaction en doublon"),
+        _flag(df, potential, UNIQUENESS, "POTENTIAL_DUPLICATE",
+              "Doublon potentiel (mêmes caractéristiques, identifiant différent)"),
+    ], ignore_index=True)
+
+
+# --- 4. Consistency ---------------------------------------------------------
+
+def check_consistency(df, as_of):
+    """Les informations d'une même transaction ne doivent pas se contredire."""
+    trade_dt = _parse_dates(df["trade_date"])
+    settle_dt = _parse_dates(df["settlement_date"])
+    return pd.concat([
+        _flag(df, (df["status"] == "SETTLED") & _is_missing(df["settlement_date"]),
+              CONSISTENCY, "SETTLED_WITHOUT_SETTLEMENT_DATE",
+              "Statut SETTLED mais aucune date de règlement"),
+        _flag(df, (df["status"] == "PENDING") & (settle_dt <= pd.Timestamp(as_of)),
+              CONSISTENCY, "PENDING_PAST_SETTLEMENT",
+              "Encore PENDING alors que la date de règlement est passée"),
+        _flag(df, settle_dt < trade_dt,
+              CONSISTENCY, "SETTLEMENT_BEFORE_TRADE",
+              "Date de règlement antérieure à la date de transaction"),
+    ], ignore_index=True)
+
+
 # --- Orchestration ----------------------------------------------------------
 
-CHECKS = [check_completeness, check_validity]
+CHECKS = [check_completeness, check_validity, check_uniqueness, check_consistency]
 
 
 def run_all_checks(df, as_of):
