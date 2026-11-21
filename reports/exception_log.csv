@@ -1,14 +1,14 @@
 exception_id,row_id,transaction_id,check_type,rule,description,owner_team,status,detected_date,resolved_date,comment
-1,5,TR0150,Completeness,MISSING_AMOUNT,Montant manquant,Middle Office,À corriger,2026-11-20,,
+1,5,TR0150,Completeness,MISSING_AMOUNT,Montant manquant,Middle Office,En cours,2026-11-20,,Montant redemandé à la contrepartie
 2,12,TR0103,Validity,FUTURE_TRADE_DATE,Date de transaction dans le futur,Reference Data,À corriger,2026-11-20,,
-3,19,TR0111,Validity,INVALID_CURRENCY,Devise invalide (hors liste autorisée),Reference Data,À corriger,2026-11-20,,
+3,19,TR0111,Validity,INVALID_CURRENCY,Devise invalide (hors liste autorisée),Reference Data,Résolu,2026-11-20,2026-11-20,Résolue automatiquement : plus détectée
 4,27,TR0056,Validity,INVALID_AMOUNT,Montant négatif ou nul,Reference Data,À corriger,2026-11-20,,
-5,29,TR0030,Validity,INVALID_CURRENCY,Devise invalide (hors liste autorisée),Reference Data,À corriger,2026-11-20,,
-6,30,TR0026,Validity,INVALID_CURRENCY,Devise invalide (hors liste autorisée),Reference Data,À corriger,2026-11-20,,
+5,29,TR0030,Validity,INVALID_CURRENCY,Devise invalide (hors liste autorisée),Reference Data,Résolu,2026-11-20,2026-11-20,Résolue automatiquement : plus détectée
+6,30,TR0026,Validity,INVALID_CURRENCY,Devise invalide (hors liste autorisée),Reference Data,Résolu,2026-11-20,2026-11-20,Résolue automatiquement : plus détectée
 7,31,TR0188,Validity,INVALID_STATUS,Statut invalide (hors liste autorisée),Reference Data,À corriger,2026-11-20,,
 8,32,TR0107,Consistency,SETTLED_WITHOUT_SETTLEMENT_DATE,Statut SETTLED mais aucune date de règlement,Settlement,À corriger,2026-11-20,,
 9,42,TR0096,Consistency,SETTLEMENT_BEFORE_TRADE,Date de règlement antérieure à la date de transaction,Settlement,À corriger,2026-11-20,,
-10,48,TR0141,Completeness,MISSING_AMOUNT,Montant manquant,Middle Office,À corriger,2026-11-20,,
+10,48,TR0141,Completeness,MISSING_AMOUNT,Montant manquant,Middle Office,En cours,2026-11-20,,Montant redemandé à la contrepartie
 11,51,TR0059,Validity,INVALID_TRADE_DATE,Date de transaction invalide ou format non conforme,Reference Data,À corriger,2026-11-20,,
 12,54,TR0076,Completeness,MISSING_COUNTERPARTY,Contrepartie manquante,Middle Office,À corriger,2026-11-20,,
 13,55,TR0034,Uniqueness,POTENTIAL_DUPLICATE,"Doublon potentiel (mêmes caractéristiques, identifiant différent)",Trade Capture,À corriger,2026-11-20,,
@@ -16,7 +16,7 @@ exception_id,row_id,transaction_id,check_type,rule,description,owner_team,status
 15,66,TR0117,Completeness,MISSING_COUNTERPARTY,Contrepartie manquante,Middle Office,À corriger,2026-11-20,,
 16,67,TR0171,Consistency,SETTLEMENT_BEFORE_TRADE,Date de règlement antérieure à la date de transaction,Settlement,À corriger,2026-11-20,,
 17,69,TR0025,Consistency,SETTLED_WITHOUT_SETTLEMENT_DATE,Statut SETTLED mais aucune date de règlement,Settlement,À corriger,2026-11-20,,
-18,85,TR0180,Validity,INVALID_CURRENCY,Devise invalide (hors liste autorisée),Reference Data,À corriger,2026-11-20,,
+18,85,TR0180,Validity,INVALID_CURRENCY,Devise invalide (hors liste autorisée),Reference Data,Résolu,2026-11-20,2026-11-20,Résolue automatiquement : plus détectée
 19,86,TR0110,Consistency,SETTLEMENT_BEFORE_TRADE,Date de règlement antérieure à la date de transaction,Settlement,À corriger,2026-11-20,,
 20,89,TR0183,Completeness,MISSING_AMOUNT,Montant manquant,Middle Office,À corriger,2026-11-20,,
 21,92,TR0098,Completeness,MISSING_CURRENCY,Devise manquante,Middle Office,À corriger,2026-11-20,,

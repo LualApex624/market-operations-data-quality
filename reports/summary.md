@@ -5,18 +5,18 @@ Date de référence : **2026-11-20**
 ## Vue d'ensemble
 
 - Transactions analysées : **207**
-- Anomalies détectées à cette date : **44** (sur **44** transactions)
-- Anomalies suivies dans le journal : **44** dont **44** encore ouvertes
+- Anomalies détectées à cette date : **40** (sur **40** transactions)
+- Anomalies suivies dans le journal : **44** dont **40** encore ouvertes
 
 ## Score de qualité par dimension
 
 | Dimension | Lignes en anomalie | Score de qualité (%) |
 |---|---|---|
 | Completeness | 12 | 94.2 |
-| Validity | 15 | 92.8 |
+| Validity | 11 | 94.7 |
 | Uniqueness | 7 | 96.6 |
 | Consistency | 10 | 95.2 |
-| Global (au moins une anomalie) | 44 | 78.7 |
+| Global (au moins une anomalie) | 40 | 80.7 |
 
 ## Anomalies par règle
 
@@ -43,14 +43,16 @@ Date de référence : **2026-11-20**
 
 | Statut | Anomalies |
 |---|---|
-| À corriger | 44 |
+| À corriger | 38 |
+| En cours | 2 |
+| Résolu | 4 |
 
 ### Par type de contrôle
 
 | Contrôle | Détectées | Résolues | Taux de résolution (%) |
 |---|---|---|---|
 | Completeness | 12 | 0 | 0.0 |
-| Validity | 15 | 0 | 0.0 |
+| Validity | 15 | 4 | 26.7 |
 | Uniqueness | 7 | 0 | 0.0 |
 | Consistency | 10 | 0 | 0.0 |
 
@@ -58,7 +60,7 @@ Date de référence : **2026-11-20**
 
 | Équipe | Anomalies ouvertes | Plus ancienne (jours) |
 |---|---|---|
-| Reference Data | 15 | 0 |
 | Middle Office | 12 | 0 |
+| Reference Data | 11 | 0 |
 | Settlement | 10 | 0 |
 | Trade Capture | 7 | 0 |
